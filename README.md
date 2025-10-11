@@ -7,6 +7,7 @@
 - [What is OKD?](#what-is-okd)
 - [Prerequisites](#prerequisites)
 - [Installation Methods](#installation-methods)
+- [🚀 Automated Installation Scripts](#-automated-installation-scripts)
 - [Quick Start with OpenShift Local (CRC)](#quick-start-with-openshift-local-crc)
 - [Configuration](#configuration)
 - [Accessing Your Cluster](#accessing-your-cluster)
@@ -90,6 +91,89 @@ Use the openshift-installer to deploy on AWS, Azure, or GCP.
 - **Complexity:** Medium (requires cloud account)
 
 **This guide focuses on Method 1 (OpenShift Local/CRC)** as it's the most practical for Windows homelabs.
+
+---
+
+## 🚀 Automated Installation Scripts
+
+**NEW!** We provide automation scripts to speed up the installation process:
+
+### PowerShell Script (Recommended)
+
+The PowerShell script provides full automation with parameter support, error handling, and colored output.
+
+**Features:**
+- ✅ Automatic system requirements checking
+- ✅ Hyper-V enablement (with restart prompt)
+- ✅ CRC configuration for OKD preset
+- ✅ Resource allocation (CPU, RAM, disk)
+- ✅ Automated setup and cluster start
+- ✅ Helpful error messages and troubleshooting
+
+**Usage:**
+
+1. **Download the script:**
+   ```powershell
+   # Download the script from this repository
+   Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ly2xxx/okd/main/install-okd.ps1" -OutFile "install-okd.ps1"
+   ```
+
+2. **Run with default settings:**
+   ```powershell
+   .\install-okd.ps1
+   ```
+
+3. **Run with custom resources:**
+   ```powershell
+   .\install-okd.ps1 -CPUs 6 -Memory 12288 -DiskSize 50
+   ```
+
+4. **Run with pull secret file:**
+   ```powershell
+   .\install-okd.ps1 -PullSecretPath "C:\Downloads\pull-secret.txt"
+   ```
+
+**Note:** You must first:
+- Download and install CRC from https://console.redhat.com/openshift/create/local
+- Download your pull secret file
+
+### Batch Script (Simple Alternative)
+
+For users who prefer a simpler interactive script:
+
+**Usage:**
+
+1. **Download the script:**
+   ```cmd
+   curl -o install-okd.bat https://raw.githubusercontent.com/ly2xxx/okd/main/install-okd.bat
+   ```
+
+2. **Run as Administrator:**
+   - Right-click `install-okd.bat`
+   - Select "Run as administrator"
+   - Follow the interactive prompts
+
+**The batch script will:**
+- Check if CRC is installed
+- Prompt you for resource settings
+- Configure CRC for OKD
+- Run setup and start the cluster
+
+### What These Scripts Do
+
+Both scripts automate the following steps:
+
+1. **System Check**: Verify prerequisites (CPU, RAM, disk space)
+2. **Hyper-V**: Check/enable Hyper-V (PowerShell script only)
+3. **CRC Detection**: Verify CRC is installed
+4. **Configuration**: Set OKD preset and resource allocation
+5. **Setup**: Run `crc setup` to download VM image and configure networking
+6. **Start**: Launch the OKD cluster
+7. **Info**: Display connection details and credentials
+
+### Manual Installation
+
+If you prefer to understand each step or the scripts don't work for your setup, follow the detailed manual installation guide below in the [Quick Start](#quick-start-with-openshift-local-crc) section.
 
 ---
 
