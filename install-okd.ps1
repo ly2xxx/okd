@@ -65,22 +65,22 @@ $CRCPath = "crc"
 # Color output functions
 function Write-Success {
     param([string]$Message)
-    Write-Host "✓ $Message" -ForegroundColor Green
+    Write-Host "[OK] $Message" -ForegroundColor Green
 }
 
 function Write-Info {
     param([string]$Message)
-    Write-Host "ℹ $Message" -ForegroundColor Cyan
+    Write-Host "[INFO] $Message" -ForegroundColor Cyan
 }
 
 function Write-Warning-Custom {
     param([string]$Message)
-    Write-Host "⚠ $Message" -ForegroundColor Yellow
+    Write-Host "[WARNING] $Message" -ForegroundColor Yellow
 }
 
 function Write-Error-Custom {
     param([string]$Message)
-    Write-Host "✗ $Message" -ForegroundColor Red
+    Write-Host "[ERROR] $Message" -ForegroundColor Red
 }
 
 function Write-Header {
@@ -342,7 +342,7 @@ function Show-ClusterInfo {
     Write-Info "  Delete cluster:         crc delete"
     Write-Info "  Setup oc CLI:           crc oc-env | Invoke-Expression"
     
-    Write-Success "`nOKD installation complete! Happy learning! 🚀"
+    Write-Success "`nOKD installation complete! Happy learning!"
 }
 
 # Main execution
